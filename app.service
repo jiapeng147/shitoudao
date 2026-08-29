@@ -1,5 +1,5 @@
 [Unit]
-Description=28ji 石头岛平台
+Description=app 石头岛平台
 After=network-online.target
 Wants=network-online.target
 StartLimitIntervalSec=0
@@ -7,12 +7,12 @@ StartLimitIntervalSec=0
 [Service]
 Type=simple
 User=root
-WorkingDirectory=/opt/28ji
-ExecStart=/usr/bin/python3 /opt/28ji/app.py
+WorkingDirectory=/opt/app
+ExecStart=/usr/bin/python3 /opt/app/app.py
 Restart=always
 RestartSec=3
-StandardOutput=append:/opt/28ji/28ji.log
-StandardError=append:/opt/28ji/28ji.log
+StandardOutput=append:/opt/app/app.log
+StandardError=append:/opt/app/app.log
 KillMode=mixed
 TimeoutStopSec=8
 

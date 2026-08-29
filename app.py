@@ -101,7 +101,7 @@ else:
     }
     JINGYU_GAME_ID = {210: 210, 60: 60}  # 石头岛直接用 style 当 game_id
 JINGYU_PERIOD = {210: 210, 60: 60}
-FETCH_URL = "https://www.28ji.com"  # 保留兼容（已不使用）
+FETCH_URL = "https://www.app.com"  # 保留兼容（已不使用）
 HEADERS_28 = STD_HEADERS_BASE
 # ⭐ 赔率表 = 官方理论赔率 × 0.98（石头岛固定抽 2% 水），实测精确对齐
 ODDS_TABLE = {
@@ -4048,7 +4048,7 @@ def fetch_60_history(token_getter=None, limit=50):
 
 
 # ══════════════════════════════════════════════════════════════
-#  28ji 共享状态（所有实例共享）
+#  app 共享状态（所有实例共享）
 # ══════════════════════════════════════════════════════════════
 state = {
     "history": [], "last_qishu": None, "countdown": 0,
@@ -13174,7 +13174,7 @@ if __name__ == "__main__":
     # ⭐ 启动 real_orders 后台回填线程（10秒一轮，扫描未结算行用内存 history 回填）
     threading.Thread(target=_backfill_real_orders_loop, daemon=True).start()
 
-    print("🚀 28ji 启动 → http://0.0.0.0:17900")
+    print("🚀 app 启动 → http://0.0.0.0:17900")
     print(f"   客户端: http://0.0.0.0:17900/")
     print(f"   管理端: http://0.0.0.0:17900{ADMIN_PATH}")
     # 🚀 生产级 WSGI（waitress）：固定 32 线程池，慢请求不互相阻塞，去掉 dev server 警告
