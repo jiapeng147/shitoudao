@@ -1,0 +1,10 @@
+*.db
+*.json
+!requirements-lock.json
+*.log
+*.bak
+*.bak.*
+app.py.lastgood
+__pycache__/
+*.pyc
+.tmp/
