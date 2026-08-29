@@ -41,6 +41,21 @@ IS_SHITOUD = (PLATFORM == "shitoud")
 PLATFORM_NAME  = "鲸鱼"  if IS_JINGYU else "石头岛"
 PLATFORM_EMOJI = "🐋"    if IS_JINGYU else "🪨"
 
+# 🐋 鲸鱼 API 是自签名证书：全局关闭 requests 证书校验 + 静音警告。
+# 石头岛证书正常，不受影响。ponytail: 全局 patch 省去逐个请求点加 verify=False；
+# 若将来鲸鱼换成正规证书，删掉这段即可。
+if IS_JINGYU:
+    import functools, urllib3
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+    _req_get, _req_post = requests.get, requests.post
+    def _no_verify(fn):
+        @functools.wraps(fn)
+        def w(*a, **k):
+            k.setdefault("verify", False)
+            return fn(*a, **k)
+        return w
+    requests.get, requests.post = _no_verify(_req_get), _no_verify(_req_post)
+
 ADMIN_DEV_PASSWORD = "Bbin123456@"
 # BASE_DIR 自动跟随 app.py 所在目录（避免硬编码路径带来的迁移坑）
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
